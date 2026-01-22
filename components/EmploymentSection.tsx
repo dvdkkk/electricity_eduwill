@@ -12,7 +12,7 @@ export const EmploymentSection: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div>
                 <h2 className="text-yellow-400 font-bold tracking-widest uppercase mb-3">Employment Status</h2>
-                <h3 className="text-4xl font-bold text-white">실시간 취업 현황</h3>
+                <h3 className="text-4xl font-bold text-white">취업 현황</h3>
             </div>
             <p className="text-gray-400 text-right md:max-w-md">
                 20대부터 50대까지, 나이와 성별을 불문하고<br/> 많은 수료생들이 현장에서 활약하고 있습니다.

@@ -46,7 +46,7 @@ export const VisionSection: React.FC = () => {
             ].map((item, idx) => (
               <div key={idx} className="bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 hover:border-yellow-400/50 transition-colors group relative overflow-hidden">
                 <div className="text-yellow-400 mb-6 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                <div className="text-5xl font-black text-zinc-800 absolute top-6 right-6 select-none opacity-50">{item.num}</div>
+                <div className="text-5xl font-black text-white absolute top-6 right-6 select-none">{item.num}</div>
                 <h4 className="text-xl font-bold text-white mb-4 relative z-10">{item.title}</h4>
                 <p className="text-gray-400 relative z-10 text-sm leading-relaxed">{item.desc}</p>
               </div>
