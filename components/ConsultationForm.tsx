@@ -43,7 +43,7 @@ export const ConsultationForm: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           
           {/* Left Text */}
-          <div className="space-y-8 sticky top-24">
+          <div className="space-y-8 lg:sticky lg:top-24">
             <h2 className="text-4xl md:text-5xl font-black leading-tight">
               망설이지 마세요.<br/>
               취업 전문가가 <br/>

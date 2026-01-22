@@ -23,8 +23,8 @@ export const Hero: React.FC = () => {
       {/* Background overlay */}
       <div className="absolute inset-0 z-0 opacity-40">
         <img 
-          src="https://images.unsplash.com/photo-1621905251189-08b95d50b79f?q=80&w=1920&auto=format&fit=crop" 
-          alt="Electrical Facility Background" 
+          src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1920&auto=format&fit=crop" 
+          alt="전기설비 배경이미지" 
           className="w-full h-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
