@@ -12,7 +12,8 @@ export const COURSES: Course[] = [
     classTime: '월~금 (오프라인 수업)',
     capacity: '20명',
     locations: '부평 / 구로 / 성남',
-    image: 'https://postfiles.pstatic.net/MjAyNjAxMjJfMjk3/MDAxNzY5MDY4MzA2OTMy.1kyqr7zNaw20qKuesPW0NwRCPTp9IIFD0Maph0yX2dUg.bHixjxvpVWTCUNLnAMjH6cjsf-wysofxEQ32gJNgJeIg.PNG/Gemini_Generated_Image_yltapiyltapiylta.png?type=w966', // Man working on electrical panel
+    // i0.wp.com 프록시는 원본 주소의 https://를 제거하고 경로만 사용해도 되지만, 전체 주소를 붙여도 자동 처리됩니다.
+    image: 'https://i0.wp.com/img.eduwill.net/eduwill/img/2021/X/product/210402/pc/curri_1.jpg',
     curriculum: [
       {
         category: '이론과정',
@@ -63,7 +64,7 @@ export const COURSES: Course[] = [
     classTime: '주5회(월~금) or 주 2회(토,일)',
     capacity: '20명',
     locations: '부평 / 구로 / 성남',
-    image: 'https://postfiles.pstatic.net/MjAyNjAxMjJfNzcg/MDAxNzY5MDY4MzA2OTQ2.VhZMN7SjryJEhqXd0PvA5WilmXFj1eAb1fp5I5as9AUg.DRnLKc8OqG_4wwevg6hrspszvjjPY4ITrhpQCK-CNJcg.PNG/Gemini_Generated_Image_fbbxopfbbxopfbbx.png?type=w966', // Woman in hardhat working
+    image: 'https://i0.wp.com/img.eduwill.net/eduwill/img/2021/X/product/210402/pc/curri_2.jpg',
     curriculum: [
       {
         category: '이론/문제/기출',

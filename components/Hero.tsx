@@ -23,8 +23,9 @@ export const Hero: React.FC = () => {
       {/* Background overlay */}
       <div className="absolute inset-0 z-0 opacity-40">
         <img 
-          src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1920&auto=format&fit=crop" 
+          src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1920&auto=format&fit=crop" 
           alt="전기설비 배경이미지" 
+          referrerPolicy="no-referrer"
           className="w-full h-full object-cover grayscale"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
@@ -32,18 +33,18 @@ export const Hero: React.FC = () => {
 
       <div className="container mx-auto px-4 z-10 relative text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 mb-6 animate-fade-in-up">
-          <Star size={16} fill="currentColor" />
-          <span className="text-sm font-bold tracking-wide">취업잘되는 자격증 4위, 전기분야</span>
+          <Star size={14} fill="currentColor" />
+          <span className="text-xs font-bold tracking-wide">취업잘되는 자격증 4위, 전기분야</span>
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight tracking-tight">
-          미래를 밝히는 기술, <br />
+        <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight tracking-tight">
+          미래를 밝히는 기술 <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
             전기 전문가
           </span>로 거듭나세요
         </h1>
         
-        <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto font-light">
+        <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-3xl mx-auto font-light">
           에듀윌 국비교육원에서 <strong className="text-white">전기기능사·전기(산업)기사</strong> 자격증 취득부터 <br className="hidden md:block"/>
           실무 교육, 그리고 <strong className="text-yellow-400">취업지원</strong>까지 한 번에 해결하십시오.
         </p>
@@ -74,8 +75,8 @@ export const Hero: React.FC = () => {
             { label: '취업 지원', value: '1:1 매칭' },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <p className="text-gray-500 text-sm mb-1">{stat.label}</p>
-              <p className="text-xl md:text-2xl font-bold text-white">{stat.value}</p>
+              <p className="text-gray-500 text-xs mb-1">{stat.label}</p>
+              <p className="text-lg md:text-xl font-bold text-white">{stat.value}</p>
             </div>
           ))}
         </div>
