@@ -12,8 +12,7 @@ export const COURSES: Course[] = [
     classTime: '월~금 (오프라인 수업)',
     capacity: '20명',
     locations: '부평 / 구로 / 성남',
-    // i0.wp.com 프록시는 원본 주소의 https://를 제거하고 경로만 사용해도 되지만, 전체 주소를 붙여도 자동 처리됩니다.
-    image: 'https://i0.wp.com/img.eduwill.net/eduwill/img/2021/X/product/210402/pc/curri_1.jpg',
+    image: 'https://postfiles.pstatic.net/MjAyNjAxMjZfNzQg/MDAxNzY5NDE2Mjg4ODI1.czhbgC_WD0B14gUOmPlcejmCJFYYoKJh70xztp0Fmh8g.oMGnLdq6vlH5Zn6i2Au1sVXkpRcahbkDQKgHQmXCZFMg.PNG/Gemini_Generated_Image_yltapiyltapiylta.png?type=w466',
     curriculum: [
       {
         category: '이론과정',
@@ -64,7 +63,7 @@ export const COURSES: Course[] = [
     classTime: '주5회(월~금) or 주 2회(토,일)',
     capacity: '20명',
     locations: '부평 / 구로 / 성남',
-    image: 'https://i0.wp.com/img.eduwill.net/eduwill/img/2021/X/product/210402/pc/curri_2.jpg',
+    image: 'https://postfiles.pstatic.net/MjAyNjAxMjZfMjQ4/MDAxNzY5NDE2Mjg4ODM4.c9mU96A8j45W050_JDak1oS6oNr7FmtliOSvId9CxUYg.vJsiLWHcFDHwEoA3sOxG8WiKnw_-cE8JQnK0HBif5kMg.PNG/Gemini_Generated_Image_fbbxopfbbxopfbbx.png?type=w466',
     curriculum: [
       {
         category: '이론/문제/기출',
