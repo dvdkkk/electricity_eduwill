@@ -17,10 +17,14 @@ export const FloatingCTA: React.FC = () => {
     e.preventDefault();
     const element = document.getElementById('consultation');
     if (element) {
-      // 헤더 높이(약 80px)를 고려하여 오프셋 설정
       const headerOffset = 80;
+      
+      // 모바일 환경(768px 미만)일 경우 텍스트를 건너뛰고 폼에 더 가깝게 이동하도록 약 7줄(180px) 추가 스크롤
+      const isMobile = window.innerWidth < 768;
+      const additionalOffset = isMobile ? 180 : 0;
+
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset + additionalOffset;
 
       window.scrollTo({
         top: offsetPosition,

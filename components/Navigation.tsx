@@ -18,10 +18,15 @@ export const Navigation: React.FC = () => {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      // 헤더 높이를 고려한 오프셋 (기존 100 -> 80으로 조정하여 더 정확한 위치로 이동)
       const headerOffset = 80;
+      
+      // 모바일 환경(768px 미만)이고 상담신청(#consultation)일 경우 
+      // 텍스트 설명을 지나 폼에 더 가깝게 이동하도록 약 7줄(180px) 추가 스크롤
+      const isMobile = window.innerWidth < 768;
+      const additionalOffset = (isMobile && targetId === 'consultation') ? 180 : 0;
+
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset + additionalOffset;
 
       window.scrollTo({
         top: offsetPosition,
