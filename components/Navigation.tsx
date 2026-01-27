@@ -45,7 +45,7 @@ export const Navigation: React.FC = () => {
         <a 
           href="#" 
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="text-2xl font-black tracking-tighter text-white"
+          className="text-3xl font-black tracking-tighter text-white"
         >
           <span className="text-yellow-400">Eduwill</span> 국비교육원
         </a>
@@ -57,7 +57,7 @@ export const Navigation: React.FC = () => {
               key={link.name} 
               href={link.href} 
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-base font-medium text-gray-300 hover:text-yellow-400 transition-colors"
+              className="text-lg font-medium text-gray-300 hover:text-yellow-400 transition-colors"
             >
               {link.name}
             </a>
@@ -65,16 +65,16 @@ export const Navigation: React.FC = () => {
           <a 
             href="#consultation" 
             onClick={(e) => handleNavClick(e, '#consultation')}
-            className="flex items-center gap-2 bg-yellow-400 text-black px-5 py-2 rounded-full font-bold hover:bg-yellow-300 transition-transform hover:scale-105"
+            className="flex items-center gap-2 bg-yellow-400 text-black px-5 py-2 rounded-full font-bold text-lg hover:bg-yellow-300 transition-transform hover:scale-105"
           >
-            <PhoneCall size={18} />
+            <PhoneCall size={20} />
             무료상담
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button className="lg:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {isMobileMenuOpen ? <X size={32} /> : <Menu size={32} />}
         </button>
       </div>
 
@@ -85,7 +85,7 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-lg text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
+              className="text-xl text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
@@ -93,7 +93,7 @@ export const Navigation: React.FC = () => {
           ))}
           <a 
             href="#consultation" 
-            className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold"
+            className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold text-lg"
             onClick={(e) => handleNavClick(e, '#consultation')}
           >
             무료상담 신청하기

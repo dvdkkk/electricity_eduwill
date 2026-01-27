@@ -33,8 +33,8 @@ export const Hero: React.FC = () => {
 
       <div className="container mx-auto px-4 z-10 relative text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 mb-6 animate-fade-in-up">
-          <Star size={12} fill="currentColor" />
-          <span className="text-[10px] font-bold tracking-wide">취업잘되는 자격증 4위, 전기분야</span>
+          <Star size={14} fill="currentColor" />
+          <span className="text-xs font-bold tracking-wide">취업잘되는 자격증 4위, 전기분야</span>
         </div>
         
         <h1 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">
@@ -53,15 +53,15 @@ export const Hero: React.FC = () => {
           <a 
             href="#consultation" 
             onClick={(e) => handleNavClick(e, '#consultation')}
-            className="group w-full md:w-auto px-7 py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black text-base font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(250,204,21,0.3)]"
+            className="group w-full md:w-auto px-7 py-3.5 bg-yellow-400 hover:bg-yellow-300 text-black text-lg font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(250,204,21,0.3)]"
           >
             국비지원 무료상담 신청하기
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </a>
           <a 
             href="#courses" 
             onClick={(e) => handleNavClick(e, '#courses')}
-            className="w-full md:w-auto px-7 py-3.5 bg-zinc-800 hover:bg-zinc-700 text-white text-base font-bold rounded-xl transition-all border border-zinc-700"
+            className="w-full md:w-auto px-7 py-3.5 bg-zinc-800 hover:bg-zinc-700 text-white text-lg font-bold rounded-xl transition-all border border-zinc-700"
           >
             교육과정 자세히 보기
           </a>
@@ -75,8 +75,8 @@ export const Hero: React.FC = () => {
             { label: '취업 지원', value: '1:1 매칭' },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <p className="text-gray-500 text-[10px] mb-1">{stat.label}</p>
-              <p className="text-base md:text-lg font-bold text-white">{stat.value}</p>
+              <p className="text-gray-500 text-xs mb-1">{stat.label}</p>
+              <p className="text-lg md:text-xl font-bold text-white">{stat.value}</p>
             </div>
           ))}
         </div>
