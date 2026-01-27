@@ -7,6 +7,7 @@ import { VisionSection } from './components/VisionSection';
 import { EmploymentSection } from './components/EmploymentSection';
 import { ConsultationForm } from './components/ConsultationForm';
 import { Footer } from './components/Footer';
+import { FloatingCTA } from './components/FloatingCTA';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <EmploymentSection />
         <ConsultationForm />
       </main>
+      <FloatingCTA />
       <Footer />
     </div>
   );
