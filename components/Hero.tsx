@@ -71,7 +71,7 @@ export const Hero: React.FC = () => {
           </a>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-white/10 pt-8">
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 w-full border-t border-white/10 pt-8">
           {[
             { label: '교육비 지원', value: '국비지원' },
             { label: '모집 정원', value: '각 20명' },

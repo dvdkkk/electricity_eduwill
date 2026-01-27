@@ -52,12 +52,12 @@ export const EmploymentSection: React.FC = () => {
     <section id="employment" className="py-12 bg-zinc-950 overflow-hidden">
       <div className="container mx-auto px-4 mb-8">
         <Reveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="text-center mb-12">
               <div>
                   <h2 className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-3">Employment Status</h2>
                   <h3 className="text-3xl font-bold text-white">취업 현황</h3>
               </div>
-              <p className="text-gray-400 text-sm md:text-right md:max-w-sm">
+              <p className="text-gray-400 text-sm mt-4">
                   20대부터 50대까지, 나이와 성별을 불문하고<br/> 많은 수료생들이 현장에서 활약하고 있습니다.
               </p>
           </div>
@@ -92,8 +92,11 @@ export const EmploymentSection: React.FC = () => {
       {/* Employment Process */}
       <div className="container mx-auto px-4">
         <Reveal className="text-center mb-8" delay={200}>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">에듀윌 취업 연계 PROCESS</h3>
-            <p className="text-gray-400 text-sm">입학부터 취업까지 체계적인 5단계 시스템</p>
+          <h2 className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-3">JOB PROCESS</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">에듀윌 취업 지원 프로세스</h3>
+          <p className="text-gray-400 text-sm md:text-base max-w-xl">
+            입학부터 취업까지 체계적인 5단계 시스템
+          </p>
         </Reveal>
 
         <Reveal delay={300}>
