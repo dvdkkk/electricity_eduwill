@@ -57,7 +57,7 @@ export const Navigation: React.FC = () => {
               key={link.name} 
               href={link.href} 
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-medium text-gray-300 hover:text-yellow-400 transition-colors"
+              className="text-base font-medium text-gray-300 hover:text-yellow-400 transition-colors"
             >
               {link.name}
             </a>
@@ -85,7 +85,7 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
+              className="text-lg text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
