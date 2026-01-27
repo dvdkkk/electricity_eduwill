@@ -1,23 +1,67 @@
-import React from 'react';
+import React, { useRef, useState, useEffect, ReactNode } from 'react';
 import { COURSES } from '../constants';
 import { CheckCircle2, Calendar, MapPin, Users, BookOpen, AlertCircle } from 'lucide-react';
+
+// 스크롤 애니메이션 컴포넌트
+interface RevealProps {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  id?: string;
+}
+
+const Reveal: React.FC<RevealProps> = ({ children, className = "", delay = 0, id }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      id={id}
+      className={`${className} transition-all duration-500 ease-out transform ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
 
 export const CourseSection: React.FC = () => {
   return (
     <section id="courses" className="py-24 bg-black relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <Reveal className="text-center mb-16">
           <h2 className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-3">Education Courses</h2>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">체계적인 교육과정</h3>
           <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto">
             이론부터 실무까지, 초보자도 전문가로 성장할 수 있는 에듀윌만의 독보적인 커리큘럼을 만나보세요.
           </p>
-        </div>
+        </Reveal>
 
         {/* Courses List - Vertical Stack */}
         <div className="space-y-24">
           {COURSES.map((course, index) => (
-            <div 
+            <Reveal 
               key={course.id} 
               id={course.id}
               className="block scroll-mt-32" 
@@ -124,7 +168,7 @@ export const CourseSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
