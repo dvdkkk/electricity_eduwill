@@ -26,8 +26,8 @@ export const IntroSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 애니메이션용 기본 클래스 (속도 300ms로 변경)
-  const transitionBase = "transition-all duration-300 ease-out transform";
+  // 애니메이션용 기본 클래스 (속도 200ms로 변경)
+  const transitionBase = "transition-all duration-200 ease-out transform";
   
   // 상태에 따른 스타일 반환
   const getStyle = (delay: string) => ({
