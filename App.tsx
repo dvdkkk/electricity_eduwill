@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
+import { IntroSection } from './components/IntroSection';
 import { CourseSection } from './components/CourseSection';
 import { VisionSection } from './components/VisionSection';
 import { EmploymentSection } from './components/EmploymentSection';
@@ -13,6 +14,7 @@ function App() {
       <Navigation />
       <main>
         <Hero />
+        <IntroSection />
         <CourseSection />
         <VisionSection />
         <EmploymentSection />
