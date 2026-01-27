@@ -18,7 +18,8 @@ export const Navigation: React.FC = () => {
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
-      const headerOffset = 100;
+      // 헤더 높이를 고려한 오프셋 (기존 100 -> 80으로 조정하여 더 정확한 위치로 이동)
+      const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 

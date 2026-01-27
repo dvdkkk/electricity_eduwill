@@ -17,7 +17,8 @@ export const FloatingCTA: React.FC = () => {
     e.preventDefault();
     const element = document.getElementById('consultation');
     if (element) {
-      const headerOffset = 100;
+      // 헤더 높이(약 80px)를 고려하여 오프셋 설정
+      const headerOffset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -35,7 +36,7 @@ export const FloatingCTA: React.FC = () => {
       <a 
         href="#consultation" 
         onClick={handleClick}
-        className="pointer-events-auto bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm w-14 h-14 rounded-full shadow-[0_4px_15px_rgba(250,204,21,0.4)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95 border-2 border-yellow-300"
+        className="pointer-events-auto bg-yellow-400 hover:bg-yellow-300 text-black font-bold text-sm w-16 h-16 rounded-full shadow-[0_4px_15px_rgba(250,204,21,0.4)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95 border border-black"
         aria-label="상담 신청하기"
       >
         상담
