@@ -36,7 +36,7 @@ const Reveal: React.FC<RevealProps> = ({ children, className = "", delay = 0, id
     <div
       ref={ref}
       id={id}
-      className={`${className} transition-all duration-500 ease-out transform ${
+      className={`${className} transition-all duration-300 ease-out transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${delay}ms` }}

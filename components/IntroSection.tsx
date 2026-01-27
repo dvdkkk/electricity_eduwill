@@ -26,8 +26,8 @@ export const IntroSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 애니메이션용 기본 클래스
-  const transitionBase = "transition-all duration-700 ease-out transform";
+  // 애니메이션용 기본 클래스 (속도 300ms로 변경)
+  const transitionBase = "transition-all duration-300 ease-out transform";
   
   // 상태에 따른 스타일 반환
   const getStyle = (delay: string) => ({
@@ -42,7 +42,7 @@ export const IntroSection: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/40 via-black to-black pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-left">
           
           {/* Top Badge */}
           <div className={getStyle("delay-0").className}>

@@ -33,7 +33,7 @@ const Reveal: React.FC<RevealProps> = ({ children, className = "", delay = 0 }) 
   return (
     <div
       ref={ref}
-      className={`${className} transition-all duration-500 ease-out transform ${
+      className={`${className} transition-all duration-300 ease-out transform ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}
       style={{ transitionDelay: `${delay}ms` }}
@@ -104,7 +104,7 @@ export const ConsultationForm: React.FC = () => {
                       </div>
                       <div>
                           <p className="text-xs font-bold opacity-70">교육문의</p>
-                          <p className="text-2xl font-black">1877-5280</p>
+                          <a href="tel:18775280" className="text-2xl font-black block hover:opacity-80 transition-opacity md:pointer-events-none md:cursor-default">1877-5280</a>
                       </div>
                   </div>
                   <div className="flex items-center gap-4">
