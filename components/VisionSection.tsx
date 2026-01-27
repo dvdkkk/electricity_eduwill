@@ -31,7 +31,7 @@ export const VisionSection: React.FC = () => {
   ];
 
   return (
-    <section id="vision" className="py-24 bg-black relative">
+    <section id="vision" className="py-24 bg-zinc-950 relative">
        {/* Decorative gradient */}
        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
 

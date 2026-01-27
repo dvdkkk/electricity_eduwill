@@ -15,8 +15,8 @@ function App() {
       <main>
         <Hero />
         <IntroSection />
-        <CourseSection />
         <VisionSection />
+        <CourseSection />
         <EmploymentSection />
         <ConsultationForm />
       </main>

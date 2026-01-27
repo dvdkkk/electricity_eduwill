@@ -4,7 +4,7 @@ import { CheckCircle2, Calendar, MapPin, Users, BookOpen, AlertCircle } from 'lu
 
 export const CourseSection: React.FC = () => {
   return (
-    <section id="courses" className="py-24 bg-zinc-950 relative">
+    <section id="courses" className="py-24 bg-black relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-3">Education Courses</h2>
