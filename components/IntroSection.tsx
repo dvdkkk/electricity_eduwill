@@ -14,8 +14,8 @@ export const IntroSection: React.FC = () => {
         }
       },
       {
-        threshold: 0.1, // 요소가 10% 보일 때 트리거
-        rootMargin: '0px 0px -10% 0px' // 모바일에서 조금 더 빨리 인식되도록 조정
+        threshold: 0.01, // 1%만 보여도 트리거
+        rootMargin: '0px' // 지연 없이 즉시 감지
       }
     );
 
@@ -26,7 +26,7 @@ export const IntroSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 애니메이션용 기본 클래스 (속도 200ms로 변경)
+  // 애니메이션용 기본 클래스 (속도 200ms)
   const transitionBase = "transition-all duration-200 ease-out transform";
   
   // 상태에 따른 스타일 반환

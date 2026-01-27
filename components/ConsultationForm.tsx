@@ -20,7 +20,7 @@ const Reveal: React.FC<RevealProps> = ({ children, className = "", delay = 0 }) 
           observer.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      { threshold: 0.01, rootMargin: '0px' } // 1% 진입 시 즉시 실행
     );
 
     if (ref.current) {
