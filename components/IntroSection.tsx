@@ -3,7 +3,7 @@ import { Users, Zap, Target } from 'lucide-react';
 
 export const IntroSection: React.FC = () => {
   return (
-    <section className="py-24 md:py-32 bg-black relative border-b border-zinc-900">
+    <section className="py-20 md:py-28 bg-black relative border-b border-zinc-900">
       {/* Background Gradients */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent opacity-50"></div>
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent opacity-50"></div>
@@ -13,16 +13,16 @@ export const IntroSection: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center">
           
           {/* Top Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-yellow-400 mb-10 shadow-[0_0_15px_rgba(250,204,21,0.1)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-yellow-400 mb-8 shadow-[0_0_15px_rgba(250,204,21,0.1)]">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
             </span>
-            <span className="text-xs font-bold tracking-widest uppercase">교육 목표</span>
+            <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">Education Mission</span>
           </div>
 
           {/* Main Headline */}
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.3] md:leading-[1.2] mb-12 tracking-tight break-keep">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white leading-[1.3] md:leading-[1.2] mb-10 tracking-tight break-keep">
             전공·경력·나이에 상관없이<br />
             <span className="relative inline-block px-2">
                 <span className="absolute inset-0 bg-yellow-400 -skew-y-2 rounded-lg transform translate-y-1"></span>
@@ -31,33 +31,33 @@ export const IntroSection: React.FC = () => {
           </h2>
 
           {/* Description */}
-          <p className="text-lg md:text-2xl text-zinc-400 font-light leading-relaxed mb-16 break-keep">
+          <p className="text-base md:text-xl text-zinc-400 font-light leading-relaxed mb-14 break-keep">
             20대부터 50대까지, <span className="text-zinc-200 font-medium">성별과 전공을 넘어</span><br className="hidden md:block" />
             다양한 수료생들이 지금 이 순간에도 <span className="text-white border-b border-yellow-400/50 pb-0.5">현장에서 활약하고 있습니다.</span>
           </p>
 
           {/* Stats / Icons Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:border-yellow-400/30 transition-colors group">
-              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-4 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
-                <Users size={24} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl hover:border-yellow-400/30 transition-colors group">
+              <div className="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-3 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
+                <Users size={20} />
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">나이 무관</h3>
-              <p className="text-zinc-500 text-sm">20대 취업준비생부터 50대 재취업 희망자까지</p>
+              <h3 className="text-white font-bold text-base mb-1.5">나이 무관</h3>
+              <p className="text-zinc-500 text-xs">20대 취업준비생부터<br/>50대 재취업 희망자까지</p>
             </div>
-            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:border-yellow-400/30 transition-colors group">
-              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-4 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
-                <Target size={24} />
+            <div className="bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl hover:border-yellow-400/30 transition-colors group">
+              <div className="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-3 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
+                <Target size={20} />
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">전공 무관</h3>
-              <p className="text-zinc-500 text-sm">인문계, 비전공자도 누구나 가능</p>
+              <h3 className="text-white font-bold text-base mb-1.5">전공 무관</h3>
+              <p className="text-zinc-500 text-xs">인문계, 비전공자도<br/>기초부터 확실하게</p>
             </div>
-            <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl hover:border-yellow-400/30 transition-colors group">
-              <div className="w-12 h-12 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-4 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
-                <Zap size={24} />
+            <div className="bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl hover:border-yellow-400/30 transition-colors group">
+              <div className="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-3 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
+                <Zap size={20} />
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">자격증 + 실무 중심</h3>
-              <p className="text-zinc-500 text-sm">자격증 + 실무 중심 교육으로 취업가능</p>
+              <h3 className="text-white font-bold text-base mb-1.5">실무 중심</h3>
+              <p className="text-zinc-500 text-xs">실무 중심 교육으로<br/>현장 투입 즉시 가능</p>
             </div>
           </div>
 
