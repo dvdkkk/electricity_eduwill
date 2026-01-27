@@ -4,7 +4,7 @@ export const COURSES: Course[] = [
   {
     id: 'course-1',
     type: 'technician',
-    title: '(국가자격) 전기기능사 (필기+실기)',
+    title: '(국비) 전기기능사 (필기+실기)',
     subTitle: '전기 분야 입문의 필수 코스',
     description: '전기기능사 자격증은 전기를 합리적으로 사용하고 전기로 인한 재해를 방지하기 위해 숙련된 기술인력을 양성하기 위한 국가기술자격제도입니다.',
     duration: '3개월 (200시간)',
@@ -55,7 +55,7 @@ export const COURSES: Course[] = [
   {
     id: 'course-2',
     type: 'engineer',
-    title: '(국가자격) 전기(산업)기사 (필기+실기)',
+    title: '(국비) 전기(산업)기사 (필기+실기)',
     subTitle: '고소득 전문 기술인으로 도약',
     description: '전기산업기사 자격증은 전기설비의 운전 및 조작, 유지·보수에 관한 전문화된 기술인력을 양성하고자 제정된 자격증입니다.',
     duration: '4개월 (310시간)',

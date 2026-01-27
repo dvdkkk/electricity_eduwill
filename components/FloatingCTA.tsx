@@ -19,9 +19,10 @@ export const FloatingCTA: React.FC = () => {
     if (element) {
       const headerOffset = 80;
       
-      // 모바일 환경(768px 미만)일 경우 텍스트를 건너뛰고 폼에 더 가깝게 이동하도록 약 7줄(180px) 추가 스크롤
+      // 모바일 환경(768px 미만)일 경우 
+      // 기존 420px에서 약 1행(30px) 위로 조정한 390px 추가 스크롤
       const isMobile = window.innerWidth < 768;
-      const additionalOffset = isMobile ? 180 : 0;
+      const additionalOffset = isMobile ? 390 : 0;
 
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset + additionalOffset;

@@ -21,9 +21,9 @@ export const Navigation: React.FC = () => {
       const headerOffset = 80;
       
       // 모바일 환경(768px 미만)이고 상담신청(#consultation)일 경우 
-      // 텍스트 설명을 지나 폼에 더 가깝게 이동하도록 약 7줄(180px) 추가 스크롤
+      // 기존 420px에서 약 1행(30px) 위로 조정한 390px 추가 스크롤
       const isMobile = window.innerWidth < 768;
-      const additionalOffset = (isMobile && targetId === 'consultation') ? 180 : 0;
+      const additionalOffset = (isMobile && targetId === 'consultation') ? 390 : 0;
 
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset + additionalOffset;
