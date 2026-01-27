@@ -45,7 +45,7 @@ export const Navigation: React.FC = () => {
         <a 
           href="#" 
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="text-3xl font-black tracking-tighter text-white"
+          className="text-2xl md:text-3xl font-black tracking-tighter text-white"
         >
           <span className="text-yellow-400">Eduwill</span> 국비교육원
         </a>
@@ -85,7 +85,7 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-lg text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
+              className="text-base text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
@@ -93,7 +93,7 @@ export const Navigation: React.FC = () => {
           ))}
           <a 
             href="#consultation" 
-            className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold text-base"
+            className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold text-sm"
             onClick={(e) => handleNavClick(e, '#consultation')}
           >
             무료상담 신청하기

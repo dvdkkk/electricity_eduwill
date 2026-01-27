@@ -20,15 +20,19 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-20">
-      {/* Background overlay */}
-      <div className="absolute inset-0 z-0 opacity-40">
-        <img 
-          src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1920&auto=format&fit=crop" 
-          alt="전기설비 배경이미지" 
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover grayscale"
+      {/* Spline 3D Background */}
+      <div className="absolute inset-0 z-0">
+        <iframe 
+          src='https://my.spline.design/retrofuturisticcircuitloop-slaUZQa1nNOPcuJ6yjRHlM02/' 
+          frameBorder='0' 
+          width='100%' 
+          height='100%'
+          className="w-full h-full scale-105"
+          style={{ pointerEvents: 'none' }} // 3D 인터랙션 비활성화로 스크롤 방해 방지
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent" />
+        {/* Dark Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-4 z-10 relative text-center">
