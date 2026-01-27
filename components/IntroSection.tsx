@@ -35,7 +35,7 @@ export const IntroSection: React.FC = () => {
   });
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-28 bg-black relative border-b border-zinc-900 overflow-hidden">
+    <section ref={sectionRef} className="py-10 md:py-14 bg-black relative border-b border-zinc-900 overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent opacity-50"></div>
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent opacity-50"></div>

@@ -80,7 +80,7 @@ export const ConsultationForm: React.FC = () => {
   };
 
   return (
-    <section id="consultation" className="py-16 bg-yellow-400 text-black">
+    <section id="consultation" className="py-8 bg-yellow-400 text-black">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           

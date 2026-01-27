@@ -49,8 +49,8 @@ export const EmploymentSection: React.FC = () => {
   const marqueeList = [...EMPLOYMENT_STATUS, ...EMPLOYMENT_STATUS, ...EMPLOYMENT_STATUS];
 
   return (
-    <section id="employment" className="py-24 bg-zinc-950 overflow-hidden">
-      <div className="container mx-auto px-4 mb-16">
+    <section id="employment" className="py-12 bg-zinc-950 overflow-hidden">
+      <div className="container mx-auto px-4 mb-8">
         <Reveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
               <div>
@@ -65,7 +65,7 @@ export const EmploymentSection: React.FC = () => {
       </div>
 
       {/* Marquee Ticker */}
-      <Reveal delay={100} className="w-full bg-zinc-900 py-5 border-y border-zinc-800 mb-24 overflow-hidden relative">
+      <Reveal delay={100} className="w-full bg-zinc-900 py-5 border-y border-zinc-800 mb-12 overflow-hidden relative">
         <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-900 to-transparent z-10"></div>
         <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-900 to-transparent z-10"></div>
         
@@ -91,7 +91,7 @@ export const EmploymentSection: React.FC = () => {
 
       {/* Employment Process */}
       <div className="container mx-auto px-4">
-        <Reveal className="text-center mb-16" delay={200}>
+        <Reveal className="text-center mb-8" delay={200}>
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">에듀윌 취업 연계 PROCESS</h3>
             <p className="text-gray-400 text-sm">입학부터 취업까지 체계적인 5단계 시스템</p>
         </Reveal>

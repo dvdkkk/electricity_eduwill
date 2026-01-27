@@ -48,9 +48,9 @@ const Reveal: React.FC<RevealProps> = ({ children, className = "", delay = 0, id
 
 export const CourseSection: React.FC = () => {
   return (
-    <section id="courses" className="py-24 bg-black relative">
+    <section id="courses" className="py-12 bg-black relative">
       <div className="container mx-auto px-4">
-        <Reveal className="text-center mb-16">
+        <Reveal className="text-center mb-8">
           <h2 className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-3">Education Courses</h2>
           <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">체계적인 교육과정</h3>
           <p className="text-gray-400 text-sm md:text-base max-w-xl mx-auto">
@@ -59,7 +59,7 @@ export const CourseSection: React.FC = () => {
         </Reveal>
 
         {/* Courses List - Vertical Stack */}
-        <div className="space-y-24">
+        <div className="space-y-12">
           {COURSES.map((course, index) => (
             <Reveal 
               key={course.id} 

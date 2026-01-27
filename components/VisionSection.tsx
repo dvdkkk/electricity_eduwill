@@ -73,13 +73,13 @@ export const VisionSection: React.FC = () => {
   ];
 
   return (
-    <section id="vision" className="py-24 bg-zinc-950 relative">
+    <section id="vision" className="py-12 bg-zinc-950 relative">
        {/* Decorative gradient */}
        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
 
       <div className="container mx-auto px-4">
         {/* Why Choose Section */}
-        <div className="mb-24">
+        <div className="mb-12">
           <Reveal className="text-center mb-16">
             <h2 className="text-yellow-400 text-xs font-bold tracking-widest uppercase mb-3">VISION</h2>
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">왜 주목해야 하나?</h3>
