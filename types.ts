@@ -15,7 +15,8 @@ export interface Course {
   locations: string;
   curriculum: CurriculumItem[];
   type: 'technician' | 'engineer'; // technician: 기능사, engineer: 기사/산업기사
-  image: string;
+  image?: string;
+  video?: string;
 }
 
 export interface EmploymentStatus {

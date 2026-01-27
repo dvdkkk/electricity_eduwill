@@ -113,20 +113,32 @@ export const CourseSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Visual Image */}
+                  {/* Visual Image / Video */}
                    <div className="relative rounded-3xl overflow-hidden aspect-square border border-zinc-800 group shadow-2xl max-w-sm mx-auto md:mx-0 bg-zinc-900 flex items-center justify-center">
-                      <img 
-                        src={course.image} 
-                        alt={course.title} 
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.opacity = '0.3';
-                          target.src = 'https://via.placeholder.com/800/1a1a1a/888888?text=Eduwill+Curriculum';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+                      {course.video ? (
+                        <video
+                          src={course.video}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                      ) : (
+                        <img 
+                          src={course.image || ''} 
+                          alt={course.title} 
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.opacity = '0.3';
+                            target.src = 'https://via.placeholder.com/800/1a1a1a/888888?text=Eduwill+Curriculum';
+                          }}
+                        />
+                      )}
+                      
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6 pointer-events-none">
                           <span className="bg-yellow-400 text-black font-bold px-3 py-1 rounded-full text-xs">
                               {course.type === 'technician' ? '전기기능사 과정' : '전기(산업)기사 과정'}
                           </span>
