@@ -43,21 +43,21 @@ export const IntroSection: React.FC = () => {
                 <Users size={20} />
               </div>
               <h3 className="text-white font-bold text-base mb-1.5">나이 무관</h3>
-              <p className="text-zinc-500 text-xs">20대 취업준비생부터<br/>50대 재취업 희망자까지</p>
+              <p className="text-zinc-500 text-xs">20대 취업준비생부터 50대 재취업 희망자까지</p>
             </div>
             <div className="bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl hover:border-yellow-400/30 transition-colors group">
               <div className="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-3 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
                 <Target size={20} />
               </div>
               <h3 className="text-white font-bold text-base mb-1.5">전공 무관</h3>
-              <p className="text-zinc-500 text-xs">인문계, 비전공자도<br/>기초부터 확실하게</p>
+              <p className="text-zinc-500 text-xs">인문계, 비전공자도 기초부터 확실하게</p>
             </div>
             <div className="bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl hover:border-yellow-400/30 transition-colors group">
               <div className="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-3 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
                 <Zap size={20} />
               </div>
-              <h3 className="text-white font-bold text-base mb-1.5">실무 중심</h3>
-              <p className="text-zinc-500 text-xs">실무 중심 교육으로<br/>현장 투입 즉시 가능</p>
+              <h3 className="text-white font-bold text-base mb-1.5">자격증 +실무 중심</h3>
+              <p className="text-zinc-500 text-xs">자격증 + 실무 중심 교육으로 현장 투입 즉시 가능</p>
             </div>
           </div>
 
