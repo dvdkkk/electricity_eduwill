@@ -85,7 +85,7 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-xl text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
+              className="text-lg text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
@@ -93,7 +93,7 @@ export const Navigation: React.FC = () => {
           ))}
           <a 
             href="#consultation" 
-            className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold text-lg"
+            className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold text-base"
             onClick={(e) => handleNavClick(e, '#consultation')}
           >
             무료상담 신청하기
