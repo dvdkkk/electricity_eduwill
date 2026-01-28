@@ -59,7 +59,7 @@ export const IntroSection: React.FC = () => {
           <h2 className={`text-2xl md:text-4xl lg:text-5xl font-black text-white leading-[1.3] md:leading-[1.2] mb-10 tracking-tight break-keep ${getStyle("delay-100").className}`}>
             전공·경력·나이에 상관없이<br />
             <span className="relative inline-block px-2">
-                <span className="absolute inset-0 bg-yellow-400 -skew-y-2 rounded-lg transform translate-y-1"></span>
+                <span className="absolute inset-0 bg-yellow-400 rounded-lg transform translate-y-1"></span>
                 <span className="relative text-black">‘할 수 있는 사람’</span>
             </span>을<br className="md:hidden"/> 만들어냅니다
           </h2>
