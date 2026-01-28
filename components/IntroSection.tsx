@@ -84,6 +84,7 @@ export const IntroSection: React.FC = () => {
                 <img 
                   src={src} 
                   alt={`교육 현장 사진 ${index + 1}`} 
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-yellow-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
