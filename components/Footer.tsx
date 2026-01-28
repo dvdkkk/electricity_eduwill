@@ -3,6 +3,14 @@ import React from 'react';
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-black text-zinc-500 py-6 border-t border-zinc-900 text-sm">
+      <!-- 리포트2.0 로그분석코드 시작 -->
+      <script type="text/javascript">
+      var sTime = new Date().getTime();
+      (function(i,s,o,g,r,a,m){i['webObject']=g;i['webUid']=r;a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})
+      (window,document,'script','//nayang81.weblog.cafe24.com/weblog.js?v='+sTime,'nayang81_9');
+      </script>
+      <!-- 리포트2.0 로그분석코드 완료 -->
+  
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div>
