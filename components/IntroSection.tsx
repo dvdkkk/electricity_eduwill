@@ -34,6 +34,13 @@ export const IntroSection: React.FC = () => {
     className: `${transitionBase} ${delay} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`
   });
 
+  const fieldImages = [
+    "https://postfiles.pstatic.net/MjAyNjAxMjhfNjcg/MDAxNzY5NTcwMzIyMzU4.UKzP7PD7KQWFR-nsAPLOOMn2IcKW8b0N28YChdPLz0Yg.5qKMY9Fo1EdWSrwFm837mQFYckzrqxGD4XgIC23MvMMg.PNG/Gemini_Generated_Image_4spg6f4spg6f4spg.png?type=w466", // User provided image 1
+    "https://postfiles.pstatic.net/MjAyNjAxMjhfMTgx/MDAxNzY5NTcwMzIyMzY4.nZmd95fkyvp32b9yIJ-1hIx0EpkTyaozkOuUx2fM8_0g.F_PTgpCDA4xlwDYEW5cx_wu1wHKOF6VyZwTc6FGsU-4g.PNG/Gemini_Generated_Image_hm87dchm87dchm87.png?type=w466", // User provided image 2
+    "https://postfiles.pstatic.net/MjAyNjAxMjhfMTY2/MDAxNzY5NTcwMzIyMzYw.1_YtzWJjzPhvojxVFHzcvnSaSuke6m78x1ijUnykMDMg.TgXr-tKFDxHZxneRVjyzArXRSmMX00zoH0Pas_vjQ7wg.PNG/Gemini_Generated_Image_gxb5oigxb5oigxb5.png?type=w466", // User provided image 3
+    "https://postfiles.pstatic.net/MjAyNjAxMjhfMzAw/MDAxNzY5NTcwMzIyMzQ5.J4AtHagzmy4V7wuSjIiU6Ozx8j4XLnVO1cE9Mi-J9r4g.MQBue43Js4oAA6M_aEA3BXYHDAhEZzyvm9Y8FzIT2Lgg.PNG/Gemini_Generated_Image_zwtxwzwtxwzwtxwz.png?type=w466"  // User provided image 4
+  ];
+
   return (
     <section ref={sectionRef} className="py-10 md:py-14 bg-black relative border-b border-zinc-900 overflow-hidden">
       {/* Background Gradients */}
@@ -65,13 +72,28 @@ export const IntroSection: React.FC = () => {
           </h2>
 
           {/* Description */}
-          <p className={`text-base md:text-xl text-zinc-400 font-light leading-relaxed mb-14 break-keep ${getStyle("delay-200").className}`}>
+          <p className={`text-base md:text-xl text-zinc-400 font-light leading-relaxed mb-12 break-keep ${getStyle("delay-200").className}`}>
             20대부터 50대까지, <span className="text-zinc-200 font-medium">성별과 전공을 넘어</span><br className="hidden md:block" />
             다양한 수료생들이 지금 이 순간에도 <span className="text-white border-b border-yellow-400/50 pb-0.5">현장에서 활약하고 있습니다.</span>
           </p>
 
+          {/* Field Photos Grid */}
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 mb-14 px-2 md:px-0 ${getStyle("delay-300").className}`}>
+            {fieldImages.map((src, index) => (
+              <div key={index} className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg">
+                <img 
+                  src={src} 
+                  alt={`교육 현장 사진 ${index + 1}`} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale group-hover:grayscale-0"
+                />
+                <div className="absolute inset-0 bg-yellow-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-50"></div>
+              </div>
+            ))}
+          </div>
+
           {/* Stats / Icons Grid */}
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-5 text-left ${getStyle("delay-300").className}`}>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-5 text-left ${getStyle("delay-500").className}`}>
             <div className="bg-zinc-900/50 border border-zinc-800 p-5 rounded-2xl hover:border-yellow-400/30 transition-colors group">
               <div className="w-10 h-10 bg-zinc-800 rounded-xl flex items-center justify-center text-white mb-3 group-hover:bg-yellow-400 group-hover:text-black transition-colors">
                 <Users size={20} />
