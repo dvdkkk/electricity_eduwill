@@ -146,8 +146,8 @@ export const ConsultationForm: React.FC = () => {
                           <input required name="name" type="text" placeholder="홍길동" className="w-full px-3 py-2.5 rounded-lg border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none transition-all text-sm" />
                       </div>
                       <div className="space-y-1">
-                          <label className="text-xs font-bold text-gray-700 ml-1">출생년도</label>
-                          <input required name="birthyear" type="text" placeholder="예: 1995" className="w-full px-3 py-2.5 rounded-lg border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none transition-all text-sm" />
+                          <label className="text-xs font-bold text-gray-700 ml-1">나이</label>
+                          <input required name="age" type="text" placeholder="예: 30" className="w-full px-3 py-2.5 rounded-lg border border-gray-200 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 outline-none transition-all text-sm" />
                       </div>
                   </div>
 
