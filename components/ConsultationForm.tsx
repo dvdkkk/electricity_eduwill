@@ -47,6 +47,24 @@ export const ConsultationForm: React.FC = () => {
   const [status, setStatus] = useState<"IDLE" | "SUBMITTING" | "SUCCESS" | "ERROR">("IDLE");
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isAgreed, setIsAgreed] = useState(true);
+  const [ipAddress, setIpAddress] = useState('');
+
+  // 접속자 IP 가져오기 (비동기 처리)
+  useEffect(() => {
+    const fetchIp = async () => {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        if (data.ip) {
+          setIpAddress(data.ip);
+          console.log('Client IP collected:', data.ip);
+        }
+      } catch (error) {
+        console.error('IP 수집 실패:', error);
+      }
+    };
+    fetchIp();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -135,6 +153,9 @@ export const ConsultationForm: React.FC = () => {
                   </div>
               ) : (
                   <form onSubmit={handleSubmit} className="space-y-3">
+                  {/* IP 주소 수집용 히든 필드 (user_ip) */}
+                  <input type="hidden" name="user_ip" value={ipAddress} />
+
                   <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
                       빠른 교육상담 신청
                       <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
