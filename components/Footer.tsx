@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
             </div>
             <div className="flex justify-between items-center mt-4">
                 <p className="text-zinc-600">Copyright ⓒ (주)에듀윌 Corp. All rights reserved.</p>
-                <a href="#admin" className="text-zinc-800 hover:text-zinc-700 text-[10px]">Admin</a>
+                <a href="#0107761" className="text-zinc-800 hover:text-zinc-700 text-[10px]">Admin</a>
             </div>
         </div>
       </div>

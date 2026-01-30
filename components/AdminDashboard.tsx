@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContent } from '../contexts/ContentContext';
-import { Save, RotateCcw, Monitor, ChevronRight } from 'lucide-react';
+import { Save, RotateCcw, Monitor, ChevronRight, LogOut } from 'lucide-react';
 
 const SECTIONS = [
   { id: 'hero', label: '메인 상단(Hero)' },
@@ -11,7 +11,11 @@ const SECTIONS = [
   { id: 'reviews', label: '수강후기(Reviews)' },
 ];
 
-export const AdminDashboard: React.FC = () => {
+interface AdminDashboardProps {
+  onLogout: () => void;
+}
+
+export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
   const { content, updateContent, resetContent } = useContent();
   const [activeTab, setActiveTab] = useState('hero');
   const [tempContent, setTempContent] = useState(content);
@@ -69,9 +73,14 @@ export const AdminDashboard: React.FC = () => {
     <div className="min-h-screen bg-black text-white flex flex-col md:flex-row">
       {/* Sidebar */}
       <div className="w-full md:w-64 bg-zinc-900 border-r border-zinc-800 flex-shrink-0">
-        <div className="p-6 border-b border-zinc-800">
-          <h1 className="text-xl font-black text-yellow-400 mb-1">ADMIN</h1>
-          <p className="text-xs text-gray-500">콘텐츠 관리 시스템</p>
+        <div className="p-6 border-b border-zinc-800 flex justify-between items-center">
+          <div>
+            <h1 className="text-xl font-black text-yellow-400 mb-1">ADMIN</h1>
+            <p className="text-xs text-gray-500">콘텐츠 관리 시스템</p>
+          </div>
+          <button onClick={onLogout} className="text-gray-500 hover:text-red-500 transition-colors" title="로그아웃">
+            <LogOut size={20} />
+          </button>
         </div>
         <nav className="p-4 space-y-1">
           {SECTIONS.map((section) => (
