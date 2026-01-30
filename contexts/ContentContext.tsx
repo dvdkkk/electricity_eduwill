@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { SiteContent } from '../types';
+import { SiteContent, VisitorLog } from '../types';
 import { COURSES, EMPLOYMENT_STATUS, PROCESS_STEPS } from '../constants';
 
 const defaultContent: SiteContent = {
@@ -75,7 +75,9 @@ const defaultContent: SiteContent = {
 
 interface ContentContextType {
   content: SiteContent;
+  visitorLogs: VisitorLog[];
   updateContent: (newContent: SiteContent) => void;
+  addVisitorLog: (log: Omit<VisitorLog, 'id'>) => void;
   resetContent: () => void;
 }
 
@@ -83,25 +85,50 @@ const ContentContext = createContext<ContentContextType | undefined>(undefined);
 
 export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [content, setContent] = useState<SiteContent>(defaultContent);
+  const [visitorLogs, setVisitorLogs] = useState<VisitorLog[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('site_content_v1');
-    if (saved) {
+    // 사이트 콘텐츠 로드
+    const savedContent = localStorage.getItem('site_content_v1');
+    if (savedContent) {
       try {
-        const parsed = JSON.parse(saved);
-        // Merge with default to ensure structure exists if schema changes
+        const parsed = JSON.parse(savedContent);
         setContent({ ...defaultContent, ...parsed });
       } catch (e) {
         console.error("Failed to load content", e);
       }
     }
+
+    // 방문자 로그 로드
+    const savedLogs = localStorage.getItem('visitor_logs_v1');
+    if (savedLogs) {
+      try {
+        setVisitorLogs(JSON.parse(savedLogs));
+      } catch (e) {
+        console.error("Failed to load logs", e);
+      }
+    }
+
     setIsLoaded(true);
   }, []);
 
   const updateContent = (newContent: SiteContent) => {
     setContent(newContent);
     localStorage.setItem('site_content_v1', JSON.stringify(newContent));
+  };
+
+  const addVisitorLog = (logData: Omit<VisitorLog, 'id'>) => {
+    const newLog: VisitorLog = {
+      ...logData,
+      id: Math.random().toString(36).substr(2, 9)
+    };
+    
+    setVisitorLogs(prev => {
+      const updated = [newLog, ...prev].slice(0, 500); // 최근 500개까지만 유지
+      localStorage.setItem('visitor_logs_v1', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const resetContent = () => {
@@ -114,7 +141,7 @@ export const ContentProvider: React.FC<{ children: ReactNode }> = ({ children })
   if (!isLoaded) return null;
 
   return (
-    <ContentContext.Provider value={{ content, updateContent, resetContent }}>
+    <ContentContext.Provider value={{ content, visitorLogs, updateContent, addVisitorLog, resetContent }}>
       {children}
     </ContentContext.Provider>
   );
