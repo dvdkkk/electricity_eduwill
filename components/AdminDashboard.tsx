@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useContent } from '../contexts/ContentContext';
 import { 
   Save, Monitor, ChevronRight, LogOut, Layout, 
   Image as ImageIcon, Target, Calendar, Award, 
-  MessageSquare, BarChart3, Globe, Hash, Clock, MousePointer
+  MessageSquare, BarChart3, Globe, Hash, Clock, MousePointer,
+  TrendingUp, Users, CalendarDays, CalendarRange, Activity
 } from 'lucide-react';
 
 const SECTIONS = [
@@ -73,9 +74,39 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
     </div>
   );
 
-  // 통계 데이터 가공
-  const uniqueVisitors = new Set(visitorLogs.map(log => log.ip)).size;
-  const totalVisits = visitorLogs.length;
+  // 통계 데이터 정밀 가공 (현지 시간 기준)
+  const stats = useMemo(() => {
+    const now = new Date();
+    // YYYY-MM-DD 형식의 현지 날짜 문자열 (sv-SE 로케일은 YYYY-MM-DD 형식을 반환함)
+    const getLocalDateStr = (date: Date) => date.toLocaleDateString('sv-SE');
+    
+    const todayStr = getLocalDateStr(now);
+    
+    const yesterday = new Date();
+    yesterday.setDate(now.getDate() - 1);
+    const yesterdayStr = getLocalDateStr(yesterday);
+    
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(now.getDate() - 7);
+    
+    const currentMonthPrefix = todayStr.substring(0, 7); // YYYY-MM
+
+    const getUV = (logs: typeof visitorLogs) => new Set(logs.map(log => log.ip)).size;
+
+    const todayLogs = visitorLogs.filter(log => log.timestamp.startsWith(todayStr));
+    const yesterdayLogs = visitorLogs.filter(log => log.timestamp.startsWith(yesterdayStr));
+    const weekLogs = visitorLogs.filter(log => new Date(log.timestamp) >= sevenDaysAgo);
+    const monthLogs = visitorLogs.filter(log => log.timestamp.startsWith(currentMonthPrefix));
+
+    return {
+      totalVisits: visitorLogs.length,
+      uvTotal: getUV(visitorLogs),
+      uvToday: getUV(todayLogs),
+      uvYesterday: getUV(yesterdayLogs),
+      uvWeek: getUV(weekLogs),
+      uvMonth: getUV(monthLogs),
+    };
+  }, [visitorLogs]);
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col md:flex-row font-sans">
@@ -147,44 +178,92 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
 
           <div className="space-y-10">
             {activeTab === 'stats' && (
-              <div className="space-y-10 animate-fade-in-up">
-                {/* Statistics Overview Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <BarChart3 size={64} />
+              <div className="space-y-12 animate-fade-in-up">
+                
+                {/* 1. 핵심 순방문자수 요약 (가장 강조) */}
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400 flex items-center gap-2">
+                    <Activity size={20} className="text-yellow-400" />
+                    실시간 순 방문자 (UV) 요약
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="bg-gradient-to-br from-zinc-900 to-black border border-zinc-800 p-7 rounded-3xl group hover:border-yellow-400/50 transition-all shadow-xl">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="p-2 bg-yellow-400/10 rounded-lg text-yellow-400">
+                          <Clock size={20} />
+                        </div>
+                        <span className="text-[10px] font-black text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded">TODAY</span>
+                      </div>
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mb-1">오늘 방문자</p>
+                      <h4 className="text-4xl font-black text-white tracking-tighter">{stats.uvToday.toLocaleString()}</h4>
+                      <p className="text-zinc-600 text-[10px] mt-2">Unique Visitors</p>
                     </div>
-                    <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">총 조회수</p>
-                    <h3 className="text-4xl font-black text-white mb-1">{totalVisits.toLocaleString()}</h3>
-                    <p className="text-zinc-600 text-[10px]">누적 페이지 로드 횟수</p>
-                  </div>
-                  <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <Globe size={64} />
+
+                    <div className="bg-zinc-900 border border-zinc-800 p-7 rounded-3xl group hover:border-zinc-700 transition-all shadow-xl">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="p-2 bg-zinc-800 rounded-lg text-zinc-400">
+                          <CalendarDays size={20} />
+                        </div>
+                        <span className="text-[10px] font-black text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">YESTERDAY</span>
+                      </div>
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mb-1">어제 방문자</p>
+                      <h4 className="text-4xl font-black text-zinc-300 tracking-tighter">{stats.uvYesterday.toLocaleString()}</h4>
+                      <p className="text-zinc-600 text-[10px] mt-2">Unique Visitors</p>
                     </div>
-                    <p className="text-yellow-400 text-xs font-bold uppercase tracking-widest mb-2">순 방문자수</p>
-                    <h3 className="text-4xl font-black text-white mb-1">{uniqueVisitors.toLocaleString()}</h3>
-                    <p className="text-zinc-600 text-[10px]">중복 제외 접속 IP 수</p>
-                  </div>
-                  <div className="bg-zinc-900 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                      <Hash size={64} />
+
+                    <div className="bg-zinc-900 border border-zinc-800 p-7 rounded-3xl group hover:border-zinc-700 transition-all shadow-xl">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="p-2 bg-zinc-800 rounded-lg text-zinc-400">
+                          <CalendarRange size={20} />
+                        </div>
+                        <span className="text-[10px] font-black text-zinc-500 bg-zinc-800 px-2 py-0.5 rounded">7 DAYS</span>
+                      </div>
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mb-1">최근 일주일</p>
+                      <h4 className="text-4xl font-black text-white tracking-tighter">{stats.uvWeek.toLocaleString()}</h4>
+                      <p className="text-zinc-600 text-[10px] mt-2">Unique Visitors</p>
                     </div>
-                    <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2">오늘의 방문자</p>
-                    <h3 className="text-4xl font-black text-white mb-1">
-                      {visitorLogs.filter(log => log.timestamp.startsWith(new Date().toISOString().split('T')[0])).length}
-                    </h3>
-                    <p className="text-zinc-600 text-[10px]">금일 기준 접속 횟수</p>
+
+                    <div className="bg-zinc-900 border border-zinc-800 p-7 rounded-3xl group hover:border-yellow-400/50 transition-all shadow-xl">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="p-2 bg-yellow-400/10 rounded-lg text-yellow-400">
+                          <Globe size={20} />
+                        </div>
+                        <span className="text-[10px] font-black text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded">MONTHLY</span>
+                      </div>
+                      <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider mb-1">이번 달 누적</p>
+                      <h4 className="text-4xl font-black text-white tracking-tighter">{stats.uvMonth.toLocaleString()}</h4>
+                      <p className="text-zinc-600 text-[10px] mt-2">Unique Visitors</p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Detailed Logs Table */}
+                {/* 2. 전체 누적 데이터 (보조 강조) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <BarChart3 size={80} />
+                    </div>
+                    <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2 pl-3 border-l-4 border-zinc-700">전체 페이지 뷰 (PV)</p>
+                    <h3 className="text-5xl font-black text-white mb-1 tracking-tighter">{stats.totalVisits.toLocaleString()}</h3>
+                    <p className="text-zinc-600 text-[10px] mt-2">누적 조회수 총합</p>
+                  </div>
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <Users size={80} />
+                    </div>
+                    <p className="text-zinc-500 text-xs font-bold uppercase tracking-widest mb-2 pl-3 border-l-4 border-zinc-700">전체 순 방문자 (Total UV)</p>
+                    <h3 className="text-5xl font-black text-white mb-1 tracking-tighter">{stats.uvTotal.toLocaleString()}</h3>
+                    <p className="text-zinc-600 text-[10px] mt-2">중복 제외 접속 IP 총합</p>
+                  </div>
+                </div>
+
+                {/* 3. 상세 로그 테이블 */}
                 <div className="bg-zinc-900/50 border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl">
                   <div className="p-6 border-b border-zinc-800 flex justify-between items-center bg-zinc-900/30">
-                    <h3 className="text-lg font-bold flex items-center gap-2">
-                      <Clock size={18} className="text-yellow-400" />
-                      최근 접속 로그 (최근 500건)
+                    <h3 className="text-lg font-bold flex items-center gap-2 pl-3 border-l-4 border-yellow-400">
+                      최근 접속 로그 상세
                     </h3>
+                    <span className="text-[10px] font-bold text-zinc-600 uppercase">RECENT 500 LOGS</span>
                   </div>
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse min-w-[1000px]">
@@ -251,157 +330,129 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
               </div>
             )}
 
-            {activeTab === 'hero' && (
-              <div className="space-y-8 animate-fade-in-up">
-                <div>
-                  <h3 className="text-lg font-bold text-yellow-400 mb-4 flex items-center gap-2">
-                    <Layout size={18} /> 메인 텍스트 설정
-                  </h3>
-                  <div className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800 space-y-4 shadow-sm">
-                    {renderInput('배지 텍스트', 'hero.badge')}
-                    {renderInput('메인 타이틀', 'hero.title')}
-                    {renderInput('강조 텍스트 (그라데이션)', 'hero.highlight')}
-                    {renderInput('설명글', 'hero.description', 'textarea')}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-yellow-400 mb-4">주요 통계 지표</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {tempContent.hero.stats.map((_, i) => (
-                      <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800">
-                        <p className="text-[10px] text-yellow-500 font-black mb-3 uppercase tracking-tighter">Stat 0{i+1}</p>
-                        {renderInput('항목명', `hero.stats.${i}.label`)}
-                        {renderInput('데이터 값', `hero.stats.${i}.value`)}
+            {activeTab !== 'stats' && (
+              <div className="animate-fade-in-up space-y-12">
+                {activeTab === 'hero' && (
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400 flex items-center gap-2">
+                        <Layout size={18} className="text-yellow-400" /> 메인 텍스트 설정
+                      </h3>
+                      <div className="p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800 space-y-4 shadow-sm">
+                        {renderInput('배지 텍스트', 'hero.badge')}
+                        {renderInput('메인 타이틀', 'hero.title')}
+                        {renderInput('강조 텍스트 (그라데이션)', 'hero.highlight')}
+                        {renderInput('설명글', 'hero.description', 'textarea')}
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'intro' && (
-              <div className="space-y-8 animate-fade-in-up">
-                <div>
-                  <h3 className="text-lg font-bold text-yellow-400 mb-4">섹션 헤더 정보</h3>
-                  <div className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800 space-y-4">
-                    {renderInput('미션 배지', 'intro.badge')}
-                    {renderInput('타이틀 첫 줄', 'intro.title1')}
-                    {renderInput('강조 키워드', 'intro.highlight')}
-                    {renderInput('타이틀 둘째 줄', 'intro.title2')}
-                    {renderInput('소개 설명문', 'intro.description', 'textarea')}
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-yellow-400 mb-4">갤러리 이미지 (4개)</h3>
-                  <div className="grid grid-cols-1 gap-3 p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800">
-                    {tempContent.intro.images.map((_, i) => (
-                      <div key={i} className="flex gap-3 items-center">
-                        <span className="text-zinc-600 font-mono text-xs w-4">0{i+1}</span>
-                        <div className="flex-1">
-                          {renderInput('', `intro.images.${i}`)}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'vision' && (
-              <div className="space-y-8 animate-fade-in-up">
-                <h3 className="text-lg font-bold text-yellow-400 mb-4">4대 비전 메시지</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {tempContent.vision.items.map((item, i) => (
-                    <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800 space-y-4">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="bg-yellow-400 text-black px-2 py-0.5 rounded text-[10px] font-black uppercase">{item.num}</span>
-                      </div>
-                      {renderInput('비전 제목', `vision.items.${i}.title`)}
-                      {renderInput('세부 설명', `vision.items.${i}.desc`, 'textarea')}
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'strategy' && (
-              <div className="space-y-8 animate-fade-in-up">
-                <h3 className="text-lg font-bold text-yellow-400 mb-4">합격 전략 커리큘럼</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {tempContent.strategy.items.map((item, i) => (
-                    <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800">
-                      <p className="text-[10px] text-yellow-500 font-black mb-3 uppercase tracking-tighter">Strategy 0{i+1}</p>
-                      {renderInput('전략 제목', `strategy.items.${i}.title`)}
-                      {renderInput('설명글', `strategy.items.${i}.desc`, 'textarea')}
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400">주요 통계 지표</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {tempContent.hero.stats.map((_, i) => (
+                          <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800">
+                            <p className="text-[10px] text-yellow-500 font-black mb-3 uppercase tracking-tighter">Stat 0{i+1}</p>
+                            {renderInput('항목명', `hero.stats.${i}.label`)}
+                            {renderInput('데이터 값', `hero.stats.${i}.value`)}
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                  </div>
+                )}
 
-            {activeTab === 'reviews' && (
-              <div className="space-y-8 animate-fade-in-up">
-                <h3 className="text-lg font-bold text-yellow-400 mb-4">수강생 리얼 후기</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {tempContent.strategy.reviews.map((item, i) => (
-                    <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800 space-y-4">
-                      <div className="flex gap-4">
-                        <div className="flex-1">{renderInput('작성자명', `strategy.reviews.${i}.name`)}</div>
-                        <div className="flex-1">{renderInput('후기 태그', `strategy.reviews.${i}.tag`)}</div>
+                {activeTab === 'intro' && (
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400">섹션 헤더 정보</h3>
+                      <div className="p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800 space-y-4">
+                        {renderInput('미션 배지', 'intro.badge')}
+                        {renderInput('타이틀 첫 줄', 'intro.title1')}
+                        {renderInput('강조 키워드', 'intro.highlight')}
+                        {renderInput('타이틀 둘째 줄', 'intro.title2')}
+                        {renderInput('소개 설명문', 'intro.description', 'textarea')}
                       </div>
-                      {renderInput('후기 내용', `strategy.reviews.${i}.text`, 'textarea')}
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            
-            {activeTab === 'schedule' && (
-              <div className="space-y-12 animate-fade-in-up">
-                <div>
-                  <h3 className="text-lg font-bold text-yellow-400 mb-6 flex items-center gap-2">
-                    <Calendar size={18} /> 전기기능사 일정 관리
-                  </h3>
-                  <div className="space-y-4">
-                    {tempContent.examSchedule.technician.map((item, i) => (
-                      <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800">
-                        <div className="mb-4 border-b border-zinc-800 pb-4">
-                          {renderInput('회차명 (예: 제 1회 정기시험)', `examSchedule.technician.${i}.round`)}
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4">
-                          {renderInput('필기 원서접수', `examSchedule.technician.${i}.writtenApp`)}
-                          {renderInput('필기 시험일', `examSchedule.technician.${i}.writtenExam`)}
-                          {renderInput('필기 합격발표', `examSchedule.technician.${i}.writtenRes`)}
-                          {renderInput('실기 원서접수', `examSchedule.technician.${i}.practicalApp`)}
-                          {renderInput('실기 시험일', `examSchedule.technician.${i}.practicalExam`)}
-                          {renderInput('최종 합격발표', `examSchedule.technician.${i}.practicalRes`)}
-                        </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400">갤러리 이미지 (4개)</h3>
+                      <div className="grid grid-cols-1 gap-3 p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800">
+                        {tempContent.intro.images.map((_, i) => (
+                          <div key={i} className="flex gap-3 items-center">
+                            <span className="text-zinc-600 font-mono text-xs w-4">0{i+1}</span>
+                            <div className="flex-1">
+                              {renderInput('', `intro.images.${i}`)}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                   </div>
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-yellow-400 mb-6 flex items-center gap-2">
-                    <Award size={18} /> 전기(산업)기사 일정 관리
-                  </h3>
-                  <div className="space-y-4">
-                    {tempContent.examSchedule.engineer.map((item, i) => (
-                      <div key={i} className="p-6 bg-zinc-900/30 rounded-2xl border border-zinc-800">
-                        <div className="mb-4 border-b border-zinc-800 pb-4">
-                          {renderInput('회차명', `examSchedule.engineer.${i}.round`)}
+                )}
+
+                {activeTab === 'vision' && (
+                  <div className="space-y-8">
+                    <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400">4대 비전 메시지</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {tempContent.vision.items.map((item, i) => (
+                        <div key={i} className="p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800 space-y-4">
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="bg-yellow-400 text-black px-2 py-0.5 rounded text-[10px] font-black uppercase">{item.num}</span>
+                          </div>
+                          {renderInput('비전 제목', `vision.items.${i}.title`)}
+                          {renderInput('세부 설명', `vision.items.${i}.desc`, 'textarea')}
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4">
-                          {renderInput('필기 원서접수', `examSchedule.engineer.${i}.writtenApp`)}
-                          {renderInput('필기 시험일', `examSchedule.engineer.${i}.writtenExam`)}
-                          {renderInput('필기 합격발표', `examSchedule.engineer.${i}.writtenRes`)}
-                          {renderInput('실기 원서접수', `examSchedule.engineer.${i}.practicalApp`)}
-                          {renderInput('실기 시험일', `examSchedule.engineer.${i}.practicalExam`)}
-                          {renderInput('최종 합격발표', `examSchedule.engineer.${i}.practicalRes`)}
-                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'schedule' && (
+                  <div className="space-y-12">
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400 flex items-center gap-2">
+                        <Calendar size={18} className="text-yellow-400" /> 전기기능사 일정 관리
+                      </h3>
+                      <div className="space-y-6">
+                        {tempContent.examSchedule.technician.map((item, i) => (
+                          <div key={i} className="p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800">
+                            <div className="mb-4 border-b border-zinc-800 pb-4">
+                              {renderInput('회차명', `examSchedule.technician.${i}.round`)}
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4">
+                              {renderInput('필기 원서접수', `examSchedule.technician.${i}.writtenApp`)}
+                              {renderInput('필기 시험일', `examSchedule.technician.${i}.writtenExam`)}
+                              {renderInput('필기 합격발표', `examSchedule.technician.${i}.writtenRes`)}
+                              {renderInput('실기 원서접수', `examSchedule.technician.${i}.practicalApp`)}
+                              {renderInput('실기 시험일', `examSchedule.technician.${i}.practicalExam`)}
+                              {renderInput('최종 합격발표', `examSchedule.technician.${i}.practicalRes`)}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white mb-6 pl-3 border-l-4 border-yellow-400 flex items-center gap-2">
+                        <Award size={18} className="text-yellow-400" /> 전기(산업)기사 일정 관리
+                      </h3>
+                      <div className="space-y-6">
+                        {tempContent.examSchedule.engineer.map((item, i) => (
+                          <div key={i} className="p-8 bg-zinc-900/30 rounded-3xl border border-zinc-800">
+                            <div className="mb-4 border-b border-zinc-800 pb-4">
+                              {renderInput('회차명', `examSchedule.engineer.${i}.round`)}
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4">
+                              {renderInput('필기 원서접수', `examSchedule.engineer.${i}.writtenApp`)}
+                              {renderInput('필기 시험일', `examSchedule.engineer.${i}.writtenExam`)}
+                              {renderInput('필기 합격발표', `examSchedule.engineer.${i}.writtenRes`)}
+                              {renderInput('실기 원서접수', `examSchedule.engineer.${i}.practicalApp`)}
+                              {renderInput('실기 시험일', `examSchedule.engineer.${i}.practicalExam`)}
+                              {renderInput('최종 합격발표', `examSchedule.engineer.${i}.practicalRes`)}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             )}
           </div>
