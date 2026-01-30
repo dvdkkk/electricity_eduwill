@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContent } from '../contexts/ContentContext';
-import { Save, RotateCcw, Monitor, ChevronRight, LogOut } from 'lucide-react';
+import { Save, Monitor, ChevronRight, LogOut } from 'lucide-react';
 
 const SECTIONS = [
   { id: 'hero', label: '메인 상단(Hero)' },
@@ -16,7 +16,7 @@ interface AdminDashboardProps {
 }
 
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
-  const { content, updateContent, resetContent } = useContent();
+  const { content, updateContent } = useContent();
   const [activeTab, setActiveTab] = useState('hero');
   const [tempContent, setTempContent] = useState(content);
 
@@ -105,13 +105,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onLogout }) => {
             >
                 <Monitor size={16} />
                 사이트 보기
-            </button>
-            <button 
-                onClick={resetContent}
-                className="w-full flex items-center justify-center gap-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 py-3 rounded-lg font-bold text-sm transition-colors"
-            >
-                <RotateCcw size={16} />
-                초기화
             </button>
         </div>
       </div>
