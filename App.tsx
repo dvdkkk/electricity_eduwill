@@ -10,6 +10,7 @@ import { Footer } from './components/Footer';
 import { FloatingCTA } from './components/FloatingCTA';
 import { CursorFollower } from './components/CursorFollower';
 import { ExamSchedule } from './components/ExamSchedule';
+import { SuccessStrategy } from './components/SuccessStrategy';
 
 function App() {
   useEffect(() => {
@@ -40,6 +41,7 @@ function App() {
         <VisionSection />
         <ExamSchedule />
         <CourseSection />
+        <SuccessStrategy />
         <EmploymentSection />
         <ConsultationForm />
       </main>

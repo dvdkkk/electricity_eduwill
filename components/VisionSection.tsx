@@ -73,10 +73,7 @@ export const VisionSection: React.FC = () => {
   ];
 
   return (
-    <section id="vision" className="py-12 bg-zinc-950 relative">
-       {/* Decorative gradient */}
-       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent"></div>
-
+    <section id="vision" className="py-20 bg-black relative border-b border-zinc-900">
       <div className="container mx-auto px-4">
         {/* Why Choose Section */}
         <div className="mb-12">
