@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Target, Zap, BookOpen, ThumbsUp, Quote } from 'lucide-react';
+import { useContent } from '../contexts/ContentContext';
 
 export const SuccessStrategy: React.FC = () => {
+  const { content } = useContent();
+  const { items: strategies, reviews } = content.strategy;
   const scrollRef = useRef<HTMLDivElement>(null);
   
   // Intersection Observer hook
@@ -20,60 +23,12 @@ export const SuccessStrategy: React.FC = () => {
   
   const isVisible = useOnScreen(scrollRef);
 
-  const strategies = [
-    {
-      icon: <Target className="w-8 h-8 text-black" />,
-      title: "핵심 위주의 고효율 커리큘럼",
-      desc: "방대한 이론 중 시험에 꼭 나오는 핵심만 짚어드립니다. 단기간에 합격권 실력을 완성하는 완성도 높은 커리큘럼입니다."
-    },
-    {
-      icon: <BookOpen className="w-8 h-8 text-black" />,
-      title: "초보자 눈높이 맞춤 교육",
-      desc: "생소한 용어와 수학 공식도 비전공자의 눈높이에서 알기 쉽게 설명합니다. 막연한 두려움을 자신감으로 바꿔드립니다."
-    },
-    {
-      icon: <Zap className="w-8 h-8 text-black" />,
-      title: "실전 중심의 완벽한 실기 대비",
-      desc: "도면 해석부터 배관 배선까지 반복 훈련을 진행합니다. 초보자도 자연스럽게 도면을 보고 작업할 수 있는 수준으로 끌어올립니다."
-    },
-    {
-      icon: <ThumbsUp className="w-8 h-8 text-black" />,
-      title: "최적의 학습 환경과 지원",
-      desc: "학습에만 집중할 수 있는 최고의 시설과 자재, 열정적인 강사진이 여러분의 합격을 끝까지 책임집니다."
-    }
-  ];
-
-  const reviews = [
-    {
-      name: "오OO님",
-      text: "에듀윌의 환경과 시설 자재 모두 너무나 맘에 들었습니다. 선생님의 열정적인 강의 덕분에 시험 합격할 수 있었습니다.",
-      tag: "최종합격"
-    },
-    {
-      name: "박OO님",
-      text: "초심자여서 막연함과 생소한 용어, 수학 공식들로 인해 어려움이 있었지만, 선생님의 강의를 들으면 들을 수록 이해가 잘 되었습니다.",
-      tag: "비전공자"
-    },
-    {
-      name: "최OO님",
-      text: "실기에 초보에 가까웠던 제가 아주 자연스럽게 도면을 보고 배관배선을 하게 된 것을 보고 감탄하게 되었습니다.",
-      tag: "실기합격"
-    },
-    {
-      name: "한OO님",
-      text: "비교적 짧은 교육기간(2개월)에 비해 전기기능사자격취득을 위한 커리큘럼의 완성도가 높다고 판단됩니다.",
-      tag: "단기합격"
-    },
-    {
-      name: "김OO님",
-      text: "주요내용과 용어들이 처음에는 힘들었지만, 에듀윌의 좋은 학습분위기와 꽉찬 수업진행에 잘 적응하면서 용기와 자신감이 생겼습니다.",
-      tag: "취업준비"
-    },
-    {
-      name: "정OO님",
-      text: "처음 공부하는 시험인데 알기 쉽게 설명해주시면서 공부하기 쉽게 중요부분을 짚어주셔서 매우 좋았습니다.",
-      tag: "필기합격"
-    }
+  // Icon mapping
+  const icons = [
+    <Target className="w-8 h-8 text-black" />,
+    <BookOpen className="w-8 h-8 text-black" />,
+    <Zap className="w-8 h-8 text-black" />,
+    <ThumbsUp className="w-8 h-8 text-black" />
   ];
 
   return (
@@ -102,7 +57,7 @@ export const SuccessStrategy: React.FC = () => {
               style={{ transitionDelay: `${idx * 100}ms` }}
             >
               <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_15px_rgba(250,204,21,0.3)]">
-                {item.icon}
+                {icons[idx] || icons[0]}
               </div>
               <h4 className="text-lg font-bold text-white mb-3">{item.title}</h4>
               <p className="text-gray-400 text-sm leading-relaxed word-keep break-keep">

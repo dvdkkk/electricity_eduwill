@@ -14,7 +14,7 @@ export interface Course {
   capacity: string;
   locations: string;
   curriculum: CurriculumItem[];
-  type: 'technician' | 'engineer'; // technician: 기능사, engineer: 기사/산업기사
+  type: 'technician' | 'engineer';
   image?: string;
   video?: string;
 }
@@ -30,4 +30,70 @@ export interface ProcessStep {
   step: string;
   title: string;
   description: string;
+}
+
+// Admin Content Types
+export interface HeroContent {
+  badge: string;
+  title: string;
+  highlight: string;
+  description: string;
+  stats: { label: string; value: string }[];
+}
+
+export interface IntroContent {
+  badge: string;
+  title1: string;
+  highlight: string;
+  title2: string;
+  description: string;
+  images: string[];
+}
+
+export interface VisionItem {
+  num: string;
+  title: string;
+  desc: string;
+}
+
+export interface ExamScheduleItem {
+  round: string;
+  writtenApp: string;
+  writtenExam: string;
+  writtenRes: string;
+  practicalApp: string;
+  practicalExam: string;
+  practicalRes: string;
+}
+
+export interface StrategyItem {
+  title: string;
+  desc: string;
+}
+
+export interface ReviewItem {
+  name: string;
+  text: string;
+  tag: string;
+}
+
+export interface SiteContent {
+  hero: HeroContent;
+  intro: IntroContent;
+  vision: {
+    items: VisionItem[];
+  };
+  courses: Course[];
+  examSchedule: {
+    technician: ExamScheduleItem[];
+    engineer: ExamScheduleItem[];
+  };
+  strategy: {
+    items: StrategyItem[];
+    reviews: ReviewItem[];
+  };
+  employment: {
+    status: EmploymentStatus[];
+    process: ProcessStep[];
+  };
 }

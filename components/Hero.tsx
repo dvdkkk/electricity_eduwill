@@ -1,7 +1,11 @@
 import React from 'react';
 import { ArrowRight, Star } from 'lucide-react';
+import { useContent } from '../contexts/ContentContext';
 
 export const Hero: React.FC = () => {
+  const { content } = useContent();
+  const { hero } = content;
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
@@ -38,19 +42,18 @@ export const Hero: React.FC = () => {
       <div className="container mx-auto px-4 z-10 relative text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 mb-6 animate-fade-in-up">
           <Star size={14} fill="currentColor" />
-          <span className="text-xs font-bold tracking-wide">취업잘되는 자격증 4위, 전기분야</span>
+          <span className="text-xs font-bold tracking-wide">{hero.badge}</span>
         </div>
         
         <h1 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight tracking-tight">
-          미래를 밝히는 기술 <br />
+          {hero.title} <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500">
-            전기 전문가
+            {hero.highlight}
           </span>로 거듭나세요
         </h1>
         
-        <p className="text-base md:text-lg text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-          에듀윌 국비교육원에서 <strong className="text-white">전기기능사·전기(산업)기사</strong> 자격증 취득부터 <br className="hidden md:block"/>
-          실무 교육, 그리고 <strong className="text-yellow-400">취업지원</strong>까지 한 번에 해결하십시오.
+        <p className="text-base md:text-lg text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed whitespace-pre-line">
+          {hero.description}
         </p>
 
         <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
@@ -72,12 +75,7 @@ export const Hero: React.FC = () => {
         </div>
 
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 w-full border-t border-white/10 pt-8">
-          {[
-            { label: '교육비 지원', value: '국비지원' },
-            { label: '모집 정원', value: '각 20명' },
-            { label: '교육 장소', value: '부평/구로/성남' },
-            { label: '취업 지원', value: '1:1 매칭' },
-          ].map((stat, idx) => (
+          {hero.stats.map((stat, idx) => (
             <div key={idx} className="text-center">
               <p className="text-gray-500 text-xs mb-1">{stat.label}</p>
               <p className="text-lg md:text-xl font-bold text-white">{stat.value}</p>

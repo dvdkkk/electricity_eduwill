@@ -49,7 +49,10 @@ export const Footer: React.FC = () => {
                 <p>원격평생교육시설신고 제 207호</p>
                 <p>개인정보보호책임자 : 최성민</p>
             </div>
-            <p className="mt-4 text-zinc-600">Copyright ⓒ (주)에듀윌 Corp. All rights reserved.</p>
+            <div className="flex justify-between items-center mt-4">
+                <p className="text-zinc-600">Copyright ⓒ (주)에듀윌 Corp. All rights reserved.</p>
+                <a href="#admin" className="text-zinc-800 hover:text-zinc-700 text-[10px]">Admin</a>
+            </div>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect, ReactNode } from 'react';
 import { TARGET_AUDIENCE } from '../constants';
 import { TrendingUp, Award, Building2, Check, Users } from 'lucide-react';
+import { useContent } from '../contexts/ContentContext';
 
 // 스크롤 애니메이션 컴포넌트
 interface RevealProps {
@@ -45,32 +46,11 @@ const Reveal: React.FC<RevealProps> = ({ children, className = "", delay = 0 }) 
 };
 
 export const VisionSection: React.FC = () => {
-  const visionItems = [
-    {
-      Icon: Award,
-      num: '01',
-      title: '보수·승진 우대',
-      desc: '기술직 공무원 및 기업체 보수나 승진에 있어 확실한 우대'
-    },
-    {
-      Icon: Building2,
-      num: '02',
-      title: '공기업 가산점',
-      desc: '한국전력공사 등 주요 공기업 입사 지원 시 가산점 부여'
-    },
-    {
-      Icon: TrendingUp,
-      num: '03',
-      title: '전기 관리직 수요',
-      desc: '4차 산업 발전과 함께 꾸준히 수요가 늘어나는 전문직'
-    },
-    {
-      Icon: Users,
-      num: '04',
-      title: '중장년층 취업 가능',
-      desc: '나이 무관! 은퇴 없는 평생 직업으로 제2의 인생 시작'
-    }
-  ];
+  const { content } = useContent();
+  const { items } = content.vision;
+
+  // Icon mapping logic is needed because we can't store components in JSON
+  const icons = [Award, Building2, TrendingUp, Users];
 
   return (
     <section id="vision" className="py-20 bg-black relative border-b border-zinc-900">
@@ -85,16 +65,19 @@ export const VisionSection: React.FC = () => {
 
           <Reveal delay={200}>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {visionItems.map((item, idx) => (
-                <div key={idx} className="bg-zinc-900/50 p-7 rounded-2xl border border-zinc-800 hover:border-yellow-400/50 transition-colors group relative overflow-hidden">
-                  <div className="text-yellow-400 mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <item.Icon size={36} />
+              {items.map((item, idx) => {
+                const Icon = icons[idx] || Award; // Fallback icon
+                return (
+                  <div key={idx} className="bg-zinc-900/50 p-7 rounded-2xl border border-zinc-800 hover:border-yellow-400/50 transition-colors group relative overflow-hidden">
+                    <div className="text-yellow-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <Icon size={36} />
+                    </div>
+                    <div className="text-4xl font-black text-white absolute top-6 right-6 select-none opacity-20">{item.num}</div>
+                    <h4 className="text-lg font-bold text-white mb-4 relative z-10">{item.title}</h4>
+                    <p className="text-gray-400 relative z-10 text-xs md:text-sm leading-relaxed">{item.desc}</p>
                   </div>
-                  <div className="text-4xl font-black text-white absolute top-6 right-6 select-none opacity-20">{item.num}</div>
-                  <h4 className="text-lg font-bold text-white mb-4 relative z-10">{item.title}</h4>
-                  <p className="text-gray-400 relative z-10 text-xs md:text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </Reveal>
         </div>

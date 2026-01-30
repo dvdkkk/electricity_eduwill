@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Users, Zap, Target } from 'lucide-react';
+import { useContent } from '../contexts/ContentContext';
 
 export const IntroSection: React.FC = () => {
+  const { content } = useContent();
+  const { intro } = content;
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -34,13 +37,6 @@ export const IntroSection: React.FC = () => {
     className: `${transitionBase} ${delay} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`
   });
 
-  const fieldImages = [
-    "https://postfiles.pstatic.net/MjAyNjAxMjhfNjcg/MDAxNzY5NTcwMzIyMzU4.UKzP7PD7KQWFR-nsAPLOOMn2IcKW8b0N28YChdPLz0Yg.5qKMY9Fo1EdWSrwFm837mQFYckzrqxGD4XgIC23MvMMg.PNG/Gemini_Generated_Image_4spg6f4spg6f4spg.png?type=w466", // User provided image 1
-    "https://postfiles.pstatic.net/MjAyNjAxMjhfMTgx/MDAxNzY5NTcwMzIyMzY4.nZmd95fkyvp32b9yIJ-1hIx0EpkTyaozkOuUx2fM8_0g.F_PTgpCDA4xlwDYEW5cx_wu1wHKOF6VyZwTc6FGsU-4g.PNG/Gemini_Generated_Image_hm87dchm87dchm87.png?type=w466", // User provided image 2
-    "https://postfiles.pstatic.net/MjAyNjAxMjhfMTY2/MDAxNzY5NTcwMzIyMzYw.1_YtzWJjzPhvojxVFHzcvnSaSuke6m78x1ijUnykMDMg.TgXr-tKFDxHZxneRVjyzArXRSmMX00zoH0Pas_vjQ7wg.PNG/Gemini_Generated_Image_gxb5oigxb5oigxb5.png?type=w466", // User provided image 3
-    "https://postfiles.pstatic.net/MjAyNjAxMjhfMzAw/MDAxNzY5NTcwMzIyMzQ5.J4AtHagzmy4V7wuSjIiU6Ozx8j4XLnVO1cE9Mi-J9r4g.MQBue43Js4oAA6M_aEA3BXYHDAhEZzyvm9Y8FzIT2Lgg.PNG/Gemini_Generated_Image_zwtxwzwtxwzwtxwz.png?type=w466"  // User provided image 4
-  ];
-
   return (
     <section ref={sectionRef} className="py-10 md:py-14 bg-black relative border-b border-zinc-900 overflow-hidden">
       {/* Background Gradients */}
@@ -58,28 +54,27 @@ export const IntroSection: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
               </span>
-              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">Education Mission</span>
+              <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">{intro.badge}</span>
             </div>
           </div>
 
           {/* Main Headline */}
           <h2 className={`text-2xl md:text-4xl lg:text-5xl font-black text-white leading-[1.3] md:leading-[1.2] mb-10 tracking-tight break-keep ${getStyle("delay-100").className}`}>
-            전공·경력·나이에 상관없이<br />
+            {intro.title1}<br />
             <span className="relative inline-block px-2">
                 <span className="absolute inset-0 bg-yellow-400 rounded-lg transform translate-y-1"></span>
-                <span className="relative text-black">‘할 수 있는 사람’</span>
-            </span>을<br className="md:hidden"/> 만들어냅니다
+                <span className="relative text-black">{intro.highlight}</span>
+            </span>{intro.title2}
           </h2>
 
           {/* Description */}
           <p className={`text-base md:text-xl text-zinc-400 font-light leading-relaxed mb-12 break-keep ${getStyle("delay-200").className}`}>
-            20대부터 50대까지, <span className="text-zinc-200 font-medium">성별과 전공을 넘어</span><br className="hidden md:block" />
-            다양한 수료생들이 지금 이 순간에도 <span className="text-white border-b border-yellow-400/50 pb-0.5">현장에서 활약하고 있습니다.</span>
+            {intro.description}
           </p>
 
           {/* Field Photos Grid */}
           <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 mb-14 px-2 md:px-0 ${getStyle("delay-300").className}`}>
-            {fieldImages.map((src, index) => (
+            {intro.images.map((src, index) => (
               <div key={index} className="group relative aspect-[4/3] rounded-xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-lg">
                 <img 
                   src={src} 

@@ -1,7 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Calendar, MousePointer2 } from 'lucide-react';
+import { useContent } from '../contexts/ContentContext';
 
 export const ExamSchedule: React.FC = () => {
+  const { content } = useContent();
+  const { technician, engineer } = content.examSchedule;
+  
   // 각 테이블별 스크롤 참조
   const scrollRef1 = useRef<HTMLDivElement>(null);
   const scrollRef2 = useRef<HTMLDivElement>(null);
@@ -17,85 +21,7 @@ export const ExamSchedule: React.FC = () => {
     }
   };
 
-  const technicianData = [
-    {
-      round: "전기기능사 1회",
-      writtenApp: "01.06 ~ 01.09",
-      writtenExam: "01.20 ~ 02.02",
-      writtenRes: "02.05",
-      practicalApp: "03.09 ~ 03.12",
-      practicalExam: "03.14 ~ 04.01",
-      practicalRes: "04.10",
-    },
-    {
-      round: "전기기능사 2회",
-      writtenApp: "03.09 ~ 03.12",
-      writtenExam: "03.20 ~ 04.09",
-      writtenRes: "04.30",
-      practicalApp: "05.11 ~ 05.14",
-      practicalExam: "05.30 ~ 06.14",
-      practicalRes: "06.26",
-    },
-    {
-      round: "필기면제 검정",
-      writtenApp: "-",
-      writtenExam: "면제",
-      writtenRes: "-",
-      practicalApp: "05.11 ~ 05.14",
-      practicalExam: "06.08 ~ 06.24",
-      practicalRes: "07.15",
-    },
-    {
-      round: "전기기능사 3회",
-      writtenApp: "06.08 ~ 06.11",
-      writtenExam: "06.27 ~ 07.02",
-      writtenRes: "07.10",
-      practicalApp: "07.27 ~ 07.30",
-      practicalExam: "08.24 ~ 09.16",
-      practicalRes: "10.02",
-    },
-    {
-      round: "전기기능사 4회",
-      writtenApp: "08.27 ~ 08.30",
-      writtenExam: "09.21 ~ 10.15",
-      writtenRes: "10.07",
-      practicalApp: "10.12 ~ 10.15",
-      practicalExam: "11.14 ~ 12.02",
-      practicalRes: "12.11",
-    },
-  ];
-
-  const engineerData = [
-    {
-      round: "전기(산업)기사 1회",
-      writtenApp: "01.12 ~ 01.15\n(빈자리: 01.24~01.25)",
-      writtenExam: "01.30 ~ 03.03",
-      writtenRes: "03.11",
-      practicalApp: "03.23 ~ 03.26",
-      practicalExam: "04.18 ~ 05.06",
-      practicalRes: "06.12",
-    },
-    {
-      round: "전기(산업)기사 2회",
-      writtenApp: "04.20 ~ 04.23",
-      writtenExam: "05.09 ~ 05.29",
-      writtenRes: "06.10",
-      practicalApp: "06.22 ~ 06.25",
-      practicalExam: "07.18 ~ 08.05",
-      practicalRes: "09.11",
-    },
-    {
-      round: "전기(산업)기사 3회",
-      writtenApp: "07.20 ~ 07.23",
-      writtenExam: "08.07 ~ 09.01",
-      writtenRes: "09.09",
-      practicalApp: "09.21 ~ 09.28",
-      practicalExam: "10.24 ~ 11.13",
-      practicalRes: "12.18",
-    },
-  ];
-
-  const Table = ({ data, title, scrollRef }: { data: typeof technicianData, title: string, scrollRef: React.RefObject<HTMLDivElement> }) => (
+  const Table = ({ data, title, scrollRef }: { data: typeof technician, title: string, scrollRef: React.RefObject<HTMLDivElement> }) => (
     <div className="mb-12 last:mb-0">
       <h4 className="text-xl md:text-2xl font-bold text-white mb-4 pl-2 border-l-4 border-yellow-400">
         {title}
@@ -181,8 +107,8 @@ export const ExamSchedule: React.FC = () => {
         </div>
 
         {/* Tables */}
-        <Table data={technicianData} title="전기기능사 (1~5달전 공부시작)" scrollRef={scrollRef1} />
-        <Table data={engineerData} title="전기(산업)기사 (1~5달전 공부시작)" scrollRef={scrollRef2} />
+        <Table data={technician} title="전기기능사 (1~5달전 공부시작)" scrollRef={scrollRef1} />
+        <Table data={engineer} title="전기(산업)기사 (1~5달전 공부시작)" scrollRef={scrollRef2} />
 
         <div className="mt-4 text-center">
             <p className="text-[10px] text-gray-600">
