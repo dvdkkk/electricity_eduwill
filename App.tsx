@@ -9,6 +9,7 @@ import { ConsultationForm } from './components/ConsultationForm';
 import { Footer } from './components/Footer';
 import { FloatingCTA } from './components/FloatingCTA';
 import { CursorFollower } from './components/CursorFollower';
+import { ExamSchedule } from './components/ExamSchedule';
 
 function App() {
   useEffect(() => {
@@ -37,6 +38,7 @@ function App() {
         <Hero />
         <IntroSection />
         <VisionSection />
+        <ExamSchedule />
         <CourseSection />
         <EmploymentSection />
         <ConsultationForm />
