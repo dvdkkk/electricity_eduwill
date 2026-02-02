@@ -39,7 +39,8 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-zinc-900 pt-8 space-y-2 text-xs md:text-sm">
-            <p>상호명 : ㈜에듀윌 | 대표이사 : 양형남 | 지점 : 부평(부평역)/구로점(구로디지털단지역)/성남점(모란역)</p>
+            <p>상호명 : ㈜에듀윌 | 대표이사 : 양형남</p>
+            <p>지점 : 부평점(부평역)/구로점(구로디지털단지역)/성남점(모란역)</p>
             <div className="flex flex-wrap gap-x-4 gap-y-1">
                 <p>사업자등록번호 : 119-81-54852</p>
                 <p>법인등록번호 : 110111-2450031</p>
