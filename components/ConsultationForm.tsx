@@ -179,14 +179,18 @@ export const ConsultationForm: React.FC = () => {
 
                   <div className="space-y-1">
                       <label className="text-xs font-bold text-gray-700 ml-1">관심과정</label>
-                      <div className="flex gap-2">
-                          <label className="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1">
+                      <div className="flex flex-wrap gap-2">
+                          <label className="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1 min-w-[100px] justify-center">
                               <input type="radio" name="course" value="전기기능사" required className="accent-yellow-400 w-3.5 h-3.5" />
-                              <span className="text-sm font-medium">전기기능사</span>
+                              <span className="text-xs font-bold">전기기능사</span>
                           </label>
-                          <label className="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1">
-                              <input type="radio" name="course" value="전기(산업)기사" className="accent-yellow-400 w-3.5 h-3.5" />
-                              <span className="text-sm font-medium">전기(산업)기사</span>
+                          <label className="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1 min-w-[100px] justify-center">
+                              <input type="radio" name="course" value="전기산업기사" className="accent-yellow-400 w-3.5 h-3.5" />
+                              <span className="text-xs font-bold">전기산업기사</span>
+                          </label>
+                          <label className="flex items-center gap-2 p-2 border rounded-lg cursor-pointer hover:bg-gray-50 flex-1 min-w-[100px] justify-center">
+                              <input type="radio" name="course" value="전기기사" className="accent-yellow-400 w-3.5 h-3.5" />
+                              <span className="text-xs font-bold">전기기사</span>
                           </label>
                       </div>
                   </div>
