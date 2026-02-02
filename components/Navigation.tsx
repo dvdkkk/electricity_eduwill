@@ -63,14 +63,26 @@ export const Navigation: React.FC = () => {
               key={link.name} 
               href={link.href} 
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-lg font-medium text-gray-300 hover:text-yellow-400 transition-colors"
+              className={`text-lg font-medium transition-colors ${
+                link.name === '상담신청' 
+                  ? 'text-yellow-400 font-bold' 
+                  : 'text-gray-300 hover:text-yellow-400'
+              }`}
             >
               {link.name}
             </a>
           ))}
           <a 
-            href="#consultation" 
-            onClick={(e) => handleNavClick(e, '#consultation')}
+            href="tel:18775280" 
+            onClick={(e) => {
+              // PC 환경(1024px 이상)에서는 스크롤, 모바일에서는 전화 연결
+              // handleNavClick에는 e.preventDefault()가 있어 링크 이동(전화)을 막고 스크롤합니다.
+              // 모바일에서는 이 함수를 호출하지 않음으로써 href="tel:..."이 정상 작동하게 합니다.
+              const isPc = window.innerWidth >= 1024;
+              if (isPc) {
+                handleNavClick(e, '#consultation');
+              }
+            }}
             className="flex items-center gap-2 bg-yellow-400 text-black px-5 py-2 rounded-full font-bold text-lg hover:bg-yellow-300 transition-transform hover:scale-105"
           >
             <PhoneCall size={20} />
@@ -91,7 +103,11 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
-              className="text-base text-gray-300 hover:text-yellow-400 font-medium py-2 border-b border-zinc-800"
+              className={`text-base font-medium py-2 border-b border-zinc-800 ${
+                link.name === '상담신청' 
+                  ? 'text-yellow-400 font-bold' 
+                  : 'text-gray-300 hover:text-yellow-400'
+              }`}
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
