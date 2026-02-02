@@ -38,6 +38,7 @@ export const Navigation: React.FC = () => {
 
   const navLinks = [
     { name: '비전 & 혜택', href: '#vision' },
+    { name: '시험일정', href: '#schedule' },
     { name: '과정소개', href: '#courses' },
     { name: '전기기능사', href: '#course-1' },
     { name: '전기(산업)기사', href: '#course-2' },
