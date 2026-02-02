@@ -107,7 +107,7 @@ export const ConsultationForm: React.FC = () => {
             <Reveal>
               <h2 className="text-3xl md:text-4xl font-black leading-tight mb-6">
                 망설이지 마세요.<br/>
-                취업 전문가가 <br/>
+                전기자격증 전문가가 <br/>
                 친절하게 안내해드립니다.
               </h2>
               <p className="text-lg font-medium text-black/80 mb-6">
