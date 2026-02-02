@@ -151,12 +151,12 @@ export const ExamSchedule: React.FC = () => {
 
         {/* Technician Table with Animation */}
         <Reveal delay={200} className="mb-16">
-          <Table data={technician} title="전기기능사 일정" scrollRef={scrollRef1} />
+          <Table data={technician} title="전기기능사 일정(1~5달 전 대비)" scrollRef={scrollRef1} />
         </Reveal>
 
         {/* Engineer Table with Animation */}
         <Reveal delay={400}>
-          <Table data={engineer} title="전기(산업)기사 일정" scrollRef={scrollRef2} />
+          <Table data={engineer} title="전기(산업)기사 일정(1~5달 전 대비)" scrollRef={scrollRef2} />
         </Reveal>
 
         <Reveal delay={600} className="mt-12 text-center">
