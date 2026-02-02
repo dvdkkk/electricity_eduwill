@@ -46,7 +46,7 @@ const defaultContent: SiteContent = {
       { round: "전기기능사 4회", writtenApp: "08.27 ~ 08.30", writtenExam: "09.21 ~ 10.15", writtenRes: "10.07", practicalApp: "10.12 ~ 10.15", practicalExam: "11.14 ~ 12.02", practicalRes: "12.11" },
     ],
     engineer: [
-      { round: "전기(산업)기사 1회", writtenApp: "01.12 ~ 01.15\n(빈자리: 01.24~01.25)", writtenExam: "01.30 ~ 03.03", writtenRes: "03.11", practicalApp: "03.23 ~ 03.26", practicalExam: "04.18 ~ 05.06", practicalRes: "06.12" },
+      { round: "전기(산업)기사 1회", writtenApp: "01.12 ~ 01.15", writtenExam: "01.30 ~ 03.03", writtenRes: "03.11", practicalApp: "03.23 ~ 03.26", practicalExam: "04.18 ~ 05.06", practicalRes: "06.12" },
       { round: "전기(산업)기사 2회", writtenApp: "04.20 ~ 04.23", writtenExam: "05.09 ~ 05.29", writtenRes: "06.10", practicalApp: "06.22 ~ 06.25", practicalExam: "07.18 ~ 08.05", practicalRes: "09.11" },
       { round: "전기(산업)기사 3회", writtenApp: "07.20 ~ 07.23", writtenExam: "08.07 ~ 09.01", writtenRes: "09.09", practicalApp: "09.21 ~ 09.28", practicalExam: "10.24 ~ 11.13", practicalRes: "12.18" },
     ]
