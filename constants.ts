@@ -5,7 +5,7 @@ export const COURSES: Course[] = [
     id: 'course-1',
     type: 'technician',
     title: '[국비지원] 전기기능사 (필기+실기)',
-    subTitle: '전기 분야 입문의 필수 코스',
+    subTitle: '전기분야 입문의 필수 코스',
     description: '전기기능사 자격증은 전기를 합리적으로 사용하고 전기로 인한 재해를 방지하기 위해 숙련된 기술인력을 양성하기 위한 국가기술자격제도입니다.',
     duration: '2개월 or 4개월 ',
     schedule: '매달 신규 개강',
